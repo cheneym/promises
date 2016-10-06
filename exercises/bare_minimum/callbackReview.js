@@ -22,9 +22,9 @@ var getStatusCode = function (url, callback) {
     url: url,
     method: 'GET'
   }, function(error, response, body) {
-    if (error) {
-      callback(error);
-    } else {
+    if (error) { 
+      callback(error); 
+    } else { 
       callback(error, response.statusCode);
     }
   });
