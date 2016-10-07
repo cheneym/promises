@@ -16,10 +16,10 @@ pluckFirstLine = require('../bare_minimum/promiseConstructor').pluckFirstLineFro
 var combineFirstLineOfManyFiles = function(filePaths, writePath) {
 
   var promises = [];
-  for (var i = 0; i < filePaths.length; i++ ){
+  for (var i = 0; i < filePaths.length; i++) {
     promises.push(pluckFirstLine(filePaths[i]));
   }
-  
+
   return Promise.all(promises)
     .then(firstLines => firstLines.join('\n'))
     .then(text => fs.writeFileAsync(writePath, text));
