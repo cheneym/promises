@@ -51,7 +51,6 @@ var all = function(arrayOfPromises) {
         count--;
         results[index] = data;
         if (count === 0) {
-          console.log(results);
           resolve(results);
         }
       };
@@ -72,7 +71,19 @@ var all = function(arrayOfPromises) {
 
 var race = function(arrayOfPromises) {
   // TODO
-
+  return new Promise(function(resolve, reject) {
+    var results = [];
+    var count = arrayOfPromises.length;
+    arrayOfPromises.forEach(function(item, index) {      
+      var cb = function(data) {
+        resolve(data);
+      };
+      item.then(cb)
+        .catch(function(e) {
+          reject(e);
+        });
+    });
+  });
 };
 
 // Export these functions so we can unit test them
